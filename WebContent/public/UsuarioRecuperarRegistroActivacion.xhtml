@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet name="reset.css" library="css" />
+	<h:outputStylesheet name="structure.css" library="css" />
+	<style>
+.box.login {
+	height: 274px;
+	width: 450px;
+	margin: -138px 0 0 -225px;
+}
+</style>
+	<h:outputScript name="scripts.js" library="js" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['images/favicon.ico']}" />
+	<title>Recuperación de mail de activación</title>
+</h:head>
+<body onload="breakout()">
+	<p:messages id="messages" showDetail="true" autoUpdate="true"
+		closable="true" showSummary="false" />
+	<h:form id="form" styleClass="box login">
+		<p:outputPanel id="panel">
+			<fieldset class="boxBody">
+				<table align="center" width="100%">
+					<tbody>
+						<tr>
+							<td align="center"><label><strong>Bienvenido(a)
+										a GasTON Web </strong></label></td>
+						</tr>
+						<tr>
+							<td align="center"><label><br />Indique su <strong>usuario</strong>
+									(dirección de correo electrónico) si desea recibir nuevamente
+									un correo electrónico de activación.</label></td>
+						</tr>
+						<tr>
+							<td><p:spacer height="10" /></td>
+						</tr>
+						<tr>
+							<td align="center"><h:panelGrid id="grid" columns="2" cellpadding="5">
+									<p:outputLabel for="email" value="Usuario" />
+									<p:inputText id="email"
+										value="#{usuarioRegistrarBean.nuevoUsuario.email}" />
+								</h:panelGrid></td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+			<footer>
+			<table align="right">
+				<tbody>
+					<tr>
+						<td><p:commandButton id="aceptar"
+								actionListener="#{usuarioRegistrarBean.recuperarRegistroActivacion()}"
+								value="Aceptar" styleClass="btnLogin" tabindex="1" update="grid" /></td>
+						<td><p:commandButton action="LOGOUT" value="Volver"
+								styleClass="btnLogin" tabindex="2" immediate="true" /></td>
+					</tr>
+				</tbody>
+			</table>
+			</footer>
+		</p:outputPanel>
+		<p:blockUI block="panel" trigger="aceptar" />
+	</h:form>
+	<ui:insert name="footer">
+		<ui:include src="/resources/common/JSFFooter.xhtml" />
+	</ui:insert>
+</body>
+</html>

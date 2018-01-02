@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#app#NucleoFamiliarListar.xhtml"
+  PATH="/app/NucleoFamiliarListar.xhtml" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#NucleoFamiliarListar.xhtml:0" NAME="item"
+   PATH="/app/NucleoFamiliarListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VISUALIZAR::#app#NucleoFamiliarVisualizar.xhtml" NAME="output"
+    PATH="/app/NucleoFamiliarVisualizar.xhtml"
+    TARGET="rules:#app#NucleoFamiliarVisualizar.xhtml"
+    TITLE="VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="CREAR::#app#NucleoFamiliarCrear.xhtml"
+    NAME="output1" PATH="/app/NucleoFamiliarCrear.xhtml"
+    TARGET="rules:#app#NucleoFamiliarCrear.xhtml" TITLE="CREAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#NucleoFamiliarVisualizar.xhtml"
+  PATH="/app/NucleoFamiliarVisualizar.xhtml" SHAPE="256,145,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#NucleoFamiliarVisualizar.xhtml:0"
+   NAME="item" PATH="/app/NucleoFamiliarVisualizar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="ELIMINAR::#app#NucleoFamiliarListar.xhtml"
+    NAME="output" PATH="/app/NucleoFamiliarListar.xhtml"
+    TARGET="rules:#app#NucleoFamiliarListar.xhtml" TITLE="ELIMINAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#app#NucleoFamiliarListar.xhtml"
+    NAME="output1" PATH="/app/NucleoFamiliarListar.xhtml"
+    TARGET="rules:#app#NucleoFamiliarListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#NucleoFamiliarCrear.xhtml"
+  PATH="/app/NucleoFamiliarCrear.xhtml" SHAPE="272,289,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#NucleoFamiliarCrear.xhtml:0" NAME="item"
+   PATH="/app/NucleoFamiliarCrear.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#app#NucleoFamiliarListar.xhtml"
+    NAME="output1" PATH="/app/NucleoFamiliarListar.xhtml"
+    TARGET="rules:#app#NucleoFamiliarListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#common#Index.xhtml"
+  PATH="/common/Index.xhtml" SHAPE="240,401,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#common#Index.xhtml:0" NAME="item"
+   PATH="/common/Index.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="ADMIN::#admin#AdminIndex.xhtml"
+    NAME="output" PATH="/admin/AdminIndex.xhtml"
+    TARGET="rules:#admin#AdminIndex.xhtml" TITLE="ADMIN" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="USUARIO::#app#AppIndex.xhtml" NAME="output1"
+    PATH="/app/AppIndex.xhtml" TARGET="rules:#app#AppIndex.xhtml"
+    TITLE="USUARIO" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,385,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="LOGOUT::#common#Index.xhtml" NAME="output"
+    PATH="/common/Index.xhtml" TARGET="rules:#common#Index.xhtml"
+    TITLE="LOGOUT" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#NucleoFamiliarGastoIngresoListar.xhtml"
+  PATH="/app/NucleoFamiliarGastoIngresoListar.xhtml" SHAPE="32,641,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#NucleoFamiliarGastoIngresoListar.xhtml:0"
+   NAME="item" PATH="/app/NucleoFamiliarGastoIngresoListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VISUALIZAR:#{gastoBean.visualizarGastos(nucleoFamiliar)}:#app#GastoListar.xhtml"
+    NAME="output" PATH="/app/GastoListar.xhtml"
+    TARGET="rules:#app#GastoListar.xhtml"
+    TITLE="#{gastoBean.visualizarGastos(nucleoFamiliar)}:VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VISUALIZAR:#{ingresoBean.visualizarIngresos(nucleoFamiliar)}:#app#IngresoListar.xhtml"
+    NAME="output1" PATH="/app/IngresoListar.xhtml"
+    TARGET="rules:#app#IngresoListar.xhtml"
+    TITLE="#{ingresoBean.visualizarIngresos(nucleoFamiliar)}:VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="REPORTE::#app#ReporteVisualizar.xhtml"
+    NAME="output2" PATH="/app/ReporteVisualizar.xhtml"
+    TARGET="rules:#app#ReporteVisualizar.xhtml" TITLE="REPORTE" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#GastoListar.xhtml"
+  PATH="/app/GastoListar.xhtml" SHAPE="256,657,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#GastoListar.xhtml:0" NAME="item"
+   PATH="/app/GastoListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VISUALIZAR::#app#GastoVisualizar.xhtml"
+    NAME="output" PATH="/app/GastoVisualizar.xhtml"
+    TARGET="rules:#app#GastoVisualizar.xhtml" TITLE="VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="CREAR::#app#GastoCrearEditar.xhtml"
+    NAME="output1" PATH="/app/GastoCrearEditar.xhtml"
+    TARGET="rules:#app#GastoCrearEditar.xhtml" TITLE="CREAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="EDITAR::#app#GastoCrearEditar.xhtml"
+    NAME="output2" PATH="/app/GastoCrearEditar.xhtml"
+    TARGET="rules:#app#GastoCrearEditar.xhtml" TITLE="EDITAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VOLVER::#app#NucleoFamiliarGastoIngresoListar.xhtml"
+    NAME="output3" PATH="/app/NucleoFamiliarGastoIngresoListar.xhtml"
+    TARGET="rules:#app#NucleoFamiliarGastoIngresoListar.xhtml"
+    TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#GastoCrearEditar.xhtml"
+  PATH="/app/GastoCrearEditar.xhtml" SHAPE="256,801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#GastoCrearEditar.xhtml:0" NAME="item"
+   PATH="/app/GastoCrearEditar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#app#GastoListar.xhtml"
+    NAME="output" PATH="/app/GastoListar.xhtml"
+    TARGET="rules:#app#GastoListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#GastoVisualizar.xhtml"
+  PATH="/app/GastoVisualizar.xhtml" SHAPE="512,641,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#GastoVisualizar.xhtml:0" NAME="item"
+   PATH="/app/GastoVisualizar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#app#GastoListar.xhtml"
+    NAME="output" PATH="/app/GastoListar.xhtml"
+    TARGET="rules:#app#GastoListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="ELIMINAR::#app#GastoListar.xhtml"
+    NAME="output1" PATH="/app/GastoListar.xhtml"
+    TARGET="rules:#app#GastoListar.xhtml" TITLE="ELIMINAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#IngresoListar.xhtml"
+  PATH="/app/IngresoListar.xhtml" SHAPE="304,865,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#IngresoListar.xhtml:0" NAME="item"
+   PATH="/app/IngresoListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VISUALIZAR::#app#IngresoVisualizar.xhtml"
+    NAME="output" PATH="/app/IngresoVisualizar.xhtml"
+    TARGET="rules:#app#IngresoVisualizar.xhtml" TITLE="VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="CREAR::#app#IngresoCrearEditar.xhtml"
+    NAME="output1" PATH="/app/IngresoCrearEditar.xhtml"
+    TARGET="rules:#app#IngresoCrearEditar.xhtml" TITLE="CREAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="EDITAR::#app#IngresoCrearEditar.xhtml"
+    NAME="output2" PATH="/app/IngresoCrearEditar.xhtml"
+    TARGET="rules:#app#IngresoCrearEditar.xhtml" TITLE="EDITAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VOLVER::#app#NucleoFamiliarGastoIngresoListar.xhtml"
+    NAME="output3" PATH="/app/NucleoFamiliarGastoIngresoListar.xhtml"
+    TARGET="rules:#app#NucleoFamiliarGastoIngresoListar.xhtml"
+    TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#IngresoCrearEditar.xhtml"
+  PATH="/app/IngresoCrearEditar.xhtml" SHAPE="48,1201,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#IngresoCrearEditar.xhtml:0" NAME="item"
+   PATH="/app/IngresoCrearEditar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#app#IngresoListar.xhtml"
+    NAME="output" PATH="/app/IngresoListar.xhtml"
+    TARGET="rules:#app#IngresoListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#IngresoVisualizar.xhtml"
+  PATH="/app/IngresoVisualizar.xhtml" SHAPE="48,849,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#IngresoVisualizar.xhtml:0" NAME="item"
+   PATH="/app/IngresoVisualizar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#app#IngresoListar.xhtml"
+    NAME="output" PATH="/app/IngresoListar.xhtml"
+    TARGET="rules:#app#IngresoListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="ELIMINAR::#app#IngresoListar.xhtml"
+    NAME="output1" PATH="/app/IngresoListar.xhtml"
+    TARGET="rules:#app#IngresoListar.xhtml" TITLE="ELIMINAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#NucleoFamiliarCierreListar.xhtml"
+  PATH="/app/NucleoFamiliarCierreListar.xhtml" SHAPE="32,1041,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#NucleoFamiliarCierreListar.xhtml:0"
+   NAME="item" PATH="/app/NucleoFamiliarCierreListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VISUALIZAR::#app#CierreListar.xhtml"
+    NAME="output" PATH="/app/CierreListar.xhtml"
+    TARGET="rules:#app#CierreListar.xhtml" TITLE="VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#CierreListar.xhtml"
+  PATH="/app/CierreListar.xhtml" SHAPE="240,1057,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#CierreListar.xhtml:0" NAME="item"
+   PATH="/app/CierreListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VOLVER::#app#NucleoFamiliarCierreListar.xhtml" NAME="output1"
+    PATH="/app/NucleoFamiliarCierreListar.xhtml"
+    TARGET="rules:#app#NucleoFamiliarCierreListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#MonedaListar.xhtml"
+  PATH="/admin/MonedaListar.xhtml" SHAPE="288,1409,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#MonedaListar.xhtml:0" NAME="item"
+   PATH="/admin/MonedaListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VISUALIZAR::#admin#MonedaVisualizar.xhtml"
+    NAME="output" PATH="/admin/MonedaVisualizar.xhtml"
+    TARGET="rules:#admin#MonedaVisualizar.xhtml" TITLE="VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="CREAR::#admin#MonedaCrearEditar.xhtml"
+    NAME="output1" PATH="/admin/MonedaCrearEditar.xhtml"
+    TARGET="rules:#admin#MonedaCrearEditar.xhtml" TITLE="CREAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="EDITAR::#admin#MonedaCrearEditar.xhtml"
+    NAME="output2" PATH="/admin/MonedaCrearEditar.xhtml"
+    TARGET="rules:#admin#MonedaCrearEditar.xhtml" TITLE="EDITAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#MonedaCrearEditar.xhtml"
+  PATH="/admin/MonedaCrearEditar.xhtml" SHAPE="48,1569,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#MonedaCrearEditar.xhtml:0" NAME="item"
+   PATH="/admin/MonedaCrearEditar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#admin#MonedaListar.xhtml"
+    NAME="output" PATH="/admin/MonedaListar.xhtml"
+    TARGET="rules:#admin#MonedaListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#MonedaVisualizar.xhtml"
+  PATH="/admin/MonedaVisualizar.xhtml" SHAPE="48,1681,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#MonedaVisualizar.xhtml:0" NAME="item"
+   PATH="/admin/MonedaVisualizar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#admin#MonedaListar.xhtml"
+    NAME="output" PATH="/admin/MonedaListar.xhtml"
+    TARGET="rules:#admin#MonedaListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="ELIMINAR::#admin#MonedaListar.xhtml"
+    NAME="output1" PATH="/admin/MonedaListar.xhtml"
+    TARGET="rules:#admin#MonedaListar.xhtml" TITLE="ELIMINAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#ClasificacionIngresoListar.xhtml"
+  PATH="/admin/ClasificacionIngresoListar.xhtml" SHAPE="288,2177,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#ClasificacionIngresoListar.xhtml:0"
+   NAME="item" PATH="/admin/ClasificacionIngresoListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VISUALIZAR::#admin#ClasificacionIngresoVisualizar.xhtml"
+    NAME="output" PATH="/admin/ClasificacionIngresoVisualizar.xhtml"
+    TARGET="rules:#admin#ClasificacionIngresoVisualizar.xhtml"
+    TITLE="VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="CREAR::#admin#ClasificacionIngresoCrearEditar.xhtml"
+    NAME="output1" PATH="/admin/ClasificacionIngresoCrearEditar.xhtml"
+    TARGET="rules:#admin#ClasificacionIngresoCrearEditar.xhtml"
+    TITLE="CREAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="EDITAR::#admin#ClasificacionIngresoCrearEditar.xhtml"
+    NAME="output2" PATH="/admin/ClasificacionIngresoCrearEditar.xhtml"
+    TARGET="rules:#admin#ClasificacionIngresoCrearEditar.xhtml"
+    TITLE="EDITAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#ClasificacionIngresoCrearEditar.xhtml"
+  PATH="/admin/ClasificacionIngresoCrearEditar.xhtml"
+  SHAPE="48,2161,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#admin#ClasificacionIngresoCrearEditar.xhtml:0" NAME="item"
+   PATH="/admin/ClasificacionIngresoCrearEditar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VOLVER::#admin#ClasificacionIngresoListar.xhtml" NAME="output"
+    PATH="/admin/ClasificacionIngresoListar.xhtml"
+    TARGET="rules:#admin#ClasificacionIngresoListar.xhtml"
+    TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#ClasificacionIngresoVisualizar.xhtml"
+  PATH="/admin/ClasificacionIngresoVisualizar.xhtml" SHAPE="48,2337,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#ClasificacionIngresoVisualizar.xhtml:0"
+   NAME="item" PATH="/admin/ClasificacionIngresoVisualizar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VOLVER::#admin#ClasificacionIngresoListar.xhtml" NAME="output"
+    PATH="/admin/ClasificacionIngresoListar.xhtml"
+    TARGET="rules:#admin#ClasificacionIngresoListar.xhtml"
+    TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ELIMINAR::#admin#ClasificacionIngresoListar.xhtml"
+    NAME="output1" PATH="/admin/ClasificacionIngresoListar.xhtml"
+    TARGET="rules:#admin#ClasificacionIngresoListar.xhtml"
+    TITLE="ELIMINAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#ClasificacionGastoListar.xhtml"
+  PATH="/admin/ClasificacionGastoListar.xhtml" SHAPE="288,2833,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#ClasificacionGastoListar.xhtml:0"
+   NAME="item" PATH="/admin/ClasificacionGastoListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VISUALIZAR::#admin#ClasificacionGastoVisualizar.xhtml"
+    NAME="output" PATH="/admin/ClasificacionGastoVisualizar.xhtml"
+    TARGET="rules:#admin#ClasificacionGastoVisualizar.xhtml"
+    TITLE="VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="CREAR::#admin#ClasificacionGastoCrearEditar.xhtml"
+    NAME="output1" PATH="/admin/ClasificacionGastoCrearEditar.xhtml"
+    TARGET="rules:#admin#ClasificacionGastoCrearEditar.xhtml"
+    TITLE="CREAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="EDITAR::#admin#ClasificacionGastoCrearEditar.xhtml"
+    NAME="output2" PATH="/admin/ClasificacionGastoCrearEditar.xhtml"
+    TARGET="rules:#admin#ClasificacionGastoCrearEditar.xhtml"
+    TITLE="EDITAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#ClasificacionGastoCrearEditar.xhtml"
+  PATH="/admin/ClasificacionGastoCrearEditar.xhtml" SHAPE="48,2817,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#ClasificacionGastoCrearEditar.xhtml:0"
+   NAME="item" PATH="/admin/ClasificacionGastoCrearEditar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VOLVER::#admin#ClasificacionGastoListar.xhtml" NAME="output"
+    PATH="/admin/ClasificacionGastoListar.xhtml"
+    TARGET="rules:#admin#ClasificacionGastoListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#ClasificacionGastoVisualizar.xhtml"
+  PATH="/admin/ClasificacionGastoVisualizar.xhtml" SHAPE="48,2993,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#ClasificacionGastoVisualizar.xhtml:0"
+   NAME="item" PATH="/admin/ClasificacionGastoVisualizar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VOLVER::#admin#ClasificacionGastoListar.xhtml" NAME="output"
+    PATH="/admin/ClasificacionGastoListar.xhtml"
+    TARGET="rules:#admin#ClasificacionGastoListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ELIMINAR::#admin#ClasificacionGastoListar.xhtml" NAME="output1"
+    PATH="/admin/ClasificacionGastoListar.xhtml"
+    TARGET="rules:#admin#ClasificacionGastoListar.xhtml"
+    TITLE="ELIMINAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#PropiedadListar.xhtml"
+  PATH="/admin/PropiedadListar.xhtml" SHAPE="288,3601,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#PropiedadListar.xhtml:0" NAME="item"
+   PATH="/admin/PropiedadListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VISUALIZAR::#admin#PropiedadVisualizar.xhtml" NAME="output"
+    PATH="/admin/PropiedadVisualizar.xhtml"
+    TARGET="rules:#admin#PropiedadVisualizar.xhtml" TITLE="VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="CREAR::#admin#PropiedadCrearEditar.xhtml"
+    NAME="output1" PATH="/admin/PropiedadCrearEditar.xhtml"
+    TARGET="rules:#admin#PropiedadCrearEditar.xhtml" TITLE="CREAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="EDITAR::#admin#PropiedadCrearEditar.xhtml"
+    NAME="output2" PATH="/admin/PropiedadCrearEditar.xhtml"
+    TARGET="rules:#admin#PropiedadCrearEditar.xhtml" TITLE="EDITAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#PropiedadCrearEditar.xhtml"
+  PATH="/admin/PropiedadCrearEditar.xhtml" SHAPE="48,3585,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#PropiedadCrearEditar.xhtml:0"
+   NAME="item" PATH="/admin/PropiedadCrearEditar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#admin#PropiedadListar.xhtml"
+    NAME="output" PATH="/admin/PropiedadListar.xhtml"
+    TARGET="rules:#admin#PropiedadListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#PropiedadVisualizar.xhtml"
+  PATH="/admin/PropiedadVisualizar.xhtml" SHAPE="48,3761,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#PropiedadVisualizar.xhtml:0"
+   NAME="item" PATH="/admin/PropiedadVisualizar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#admin#PropiedadListar.xhtml"
+    NAME="output" PATH="/admin/PropiedadListar.xhtml"
+    TARGET="rules:#admin#PropiedadListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="ELIMINAR::#admin#PropiedadListar.xhtml"
+    NAME="output1" PATH="/admin/PropiedadListar.xhtml"
+    TARGET="rules:#admin#PropiedadListar.xhtml" TITLE="ELIMINAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#ReporteVisualizar.xhtml"
+  PATH="/app/ReporteVisualizar.xhtml" SHAPE="304,865,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#ReporteVisualizar.xhtml:0" NAME="item"
+   PATH="/app/ReporteVisualizar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VOLVER::#app#NucleoFamiliarGastoIngresoListar.xhtml"
+    NAME="output" PATH="/app/NucleoFamiliarGastoIngresoListar.xhtml"
+    TARGET="rules:#app#NucleoFamiliarGastoIngresoListar.xhtml"
+    TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#AlertaListar.xhtml"
+  PATH="/app/AlertaListar.xhtml" SHAPE="272,5297,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#AlertaListar.xhtml:0" NAME="item"
+   PATH="/app/AlertaListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VISUALIZAR::#app#AlertaVisualizar.xhtml"
+    NAME="output" PATH="/app/AlertaVisualizar.xhtml"
+    TARGET="rules:#app#AlertaVisualizar.xhtml" TITLE="VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="CREAR::#app#AlertaCrear.xhtml"
+    NAME="output1" PATH="/app/AlertaCrear.xhtml"
+    TARGET="rules:#app#AlertaCrear.xhtml" TITLE="CREAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#AlertaCrear.xhtml"
+  PATH="/app/AlertaCrear.xhtml" SHAPE="32,5953,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#AlertaCrear.xhtml:0" NAME="item"
+   PATH="/app/AlertaCrear.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#app#AlertaListar.xhtml"
+    NAME="output" PATH="/app/AlertaListar.xhtml"
+    TARGET="rules:#app#AlertaListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#AlertaVisualizar.xhtml"
+  PATH="/app/AlertaVisualizar.xhtml" SHAPE="32,5457,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#AlertaVisualizar.xhtml:0" NAME="item"
+   PATH="/app/AlertaVisualizar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#app#AlertaListar.xhtml"
+    NAME="output" PATH="/app/AlertaListar.xhtml"
+    TARGET="rules:#app#AlertaListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="ELIMINAR::#app#AlertaListar.xhtml"
+    NAME="output1" PATH="/app/AlertaListar.xhtml"
+    TARGET="rules:#app#AlertaListar.xhtml" TITLE="ELIMINAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#AdminIndex.xhtml"
+  PATH="/admin/AdminIndex.xhtml" SHAPE="464,385,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#app#AppIndex.xhtml"
+  PATH="/app/AppIndex.xhtml" SHAPE="464,529,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#public#UsuarioRecuperarPwd.xhtml"
+  PATH="/public/UsuarioRecuperarPwd.xhtml" SHAPE="32,6801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#public#UsuarioRecuperarPwd.xhtml:0"
+   NAME="item" PATH="/public/UsuarioRecuperarPwd.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="PREGUNTA_SEGURIDAD::#public#UsuarioPreguntaSeguridad.xhtml"
+    NAME="output1" PATH="/public/UsuarioPreguntaSeguridad.xhtml"
+    TARGET="rules:#public#UsuarioPreguntaSeguridad.xhtml"
+    TITLE="PREGUNTA_SEGURIDAD" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#public#UsuarioPreguntaSeguridad.xhtml"
+  PATH="/public/UsuarioPreguntaSeguridad.xhtml" SHAPE="256,6817,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#admin#PreguntaSeguridadListar.xhtml"
+  PATH="/admin/PreguntaSeguridadListar.xhtml" SHAPE="288,7633,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#PreguntaSeguridadListar.xhtml:0"
+   NAME="item" PATH="/admin/PreguntaSeguridadListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VISUALIZAR::#admin#PreguntaSeguridadVisualizar.xhtml"
+    NAME="output" PATH="/admin/PreguntaSeguridadVisualizar.xhtml"
+    TARGET="rules:#admin#PreguntaSeguridadVisualizar.xhtml"
+    TITLE="VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="CREAR::#admin#PreguntaSeguridadCrearEditar.xhtml" NAME="output1"
+    PATH="/admin/PreguntaSeguridadCrearEditar.xhtml"
+    TARGET="rules:#admin#PreguntaSeguridadCrearEditar.xhtml"
+    TITLE="CREAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="EDITAR::#admin#PreguntaSeguridadCrearEditar.xhtml"
+    NAME="output2" PATH="/admin/PreguntaSeguridadCrearEditar.xhtml"
+    TARGET="rules:#admin#PreguntaSeguridadCrearEditar.xhtml"
+    TITLE="EDITAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#PreguntaSeguridadCrearEditar.xhtml"
+  PATH="/admin/PreguntaSeguridadCrearEditar.xhtml" SHAPE="48,7617,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#PreguntaSeguridadCrearEditar.xhtml:0"
+   NAME="item" PATH="/admin/PreguntaSeguridadCrearEditar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VOLVER::#admin#PreguntaSeguridadListar.xhtml" NAME="output"
+    PATH="/admin/PreguntaSeguridadListar.xhtml"
+    TARGET="rules:#admin#PreguntaSeguridadListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#PreguntaSeguridadVisualizar.xhtml"
+  PATH="/admin/PreguntaSeguridadVisualizar.xhtml" SHAPE="48,7793,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#PreguntaSeguridadVisualizar.xhtml:0"
+   NAME="item" PATH="/admin/PreguntaSeguridadVisualizar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="VOLVER::#admin#PreguntaSeguridadListar.xhtml" NAME="output"
+    PATH="/admin/PreguntaSeguridadListar.xhtml"
+    TARGET="rules:#admin#PreguntaSeguridadListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ELIMINAR::#admin#PreguntaSeguridadListar.xhtml" NAME="output1"
+    PATH="/admin/PreguntaSeguridadListar.xhtml"
+    TARGET="rules:#admin#PreguntaSeguridadListar.xhtml" TITLE="ELIMINAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#SolicitudListar.xhtml"
+  PATH="/app/SolicitudListar.xhtml" SHAPE="272,8865,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#SolicitudListar.xhtml:0" NAME="item"
+   PATH="/app/SolicitudListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VISUALIZAR::#app#SolicitudVisualizar.xhtml"
+    NAME="output" PATH="/app/SolicitudVisualizar.xhtml"
+    TARGET="rules:#app#SolicitudVisualizar.xhtml" TITLE="VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#app#SolicitudVisualizar.xhtml"
+  PATH="/app/SolicitudVisualizar.xhtml" SHAPE="32,8849,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#app#SolicitudVisualizar.xhtml:0" NAME="item"
+   PATH="/app/SolicitudVisualizar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#app#SolicitudListar.xhtml"
+    NAME="output" PATH="/app/SolicitudListar.xhtml"
+    TARGET="rules:#app#SolicitudListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="APROBAR::#app#SolicitudListar.xhtml"
+    NAME="output1" PATH="/app/SolicitudListar.xhtml"
+    TARGET="rules:#app#SolicitudListar.xhtml" TITLE="APROBAR" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="ELIMINAR::#app#SolicitudListar.xhtml"
+    NAME="output2" PATH="/app/SolicitudListar.xhtml"
+    TARGET="rules:#app#SolicitudListar.xhtml" TITLE="ELIMINAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#common#MailListar.xhtml"
+  PATH="/common/MailListar.xhtml" SHAPE="256,9857,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#common#MailListar.xhtml:0" NAME="item"
+   PATH="/common/MailListar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VISUALIZAR::#common#MailVisualizar.xhtml"
+    NAME="output" PATH="/common/MailVisualizar.xhtml"
+    TARGET="rules:#common#MailVisualizar.xhtml" TITLE="VISUALIZAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#common#MailVisualizar.xhtml"
+  PATH="/common/MailVisualizar.xhtml" SHAPE="32,9841,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#common#MailVisualizar.xhtml:0" NAME="item"
+   PATH="/common/MailVisualizar.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="VOLVER::#common#MailListar.xhtml"
+    NAME="output" PATH="/common/MailListar.xhtml"
+    TARGET="rules:#common#MailListar.xhtml" TITLE="VOLVER" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="ELIMINAR::#common#MailListar.xhtml"
+    NAME="output1" PATH="/common/MailListar.xhtml"
+    TARGET="rules:#common#MailListar.xhtml" TITLE="ELIMINAR" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

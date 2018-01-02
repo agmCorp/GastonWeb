@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet name="default.css" library="css" />
+	<h:outputStylesheet name="cssLayout.css" library="css" />
+	<h:outputScript name="scripts.js" library="js" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['images/favicon.ico']}" />
+	<title>GasTON web</title>
+</h:head>
+
+<body
+	onload="impedirCargaIndividual('#{request.contextPath}/common/Index.xhtml')">
+	<div id="contenido">
+		<h:form>
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" showSummary="true" globalOnly="true" />
+			<table align="center">
+				<tbody>
+					<tr>
+						<td><h:panelGrid id="grid" columns="3" cellpadding="5">
+								<p:outputLabel for="nuevoNucleoFamiliar"
+									value="Nombre del nuevo núcleo familiar" />
+								<p:inputText id="nuevoNucleoFamiliar"
+									value="#{nucleoFamiliarBean.nuevoNucleoFamiliar.nombre}" />
+								<p:message for="nuevoNucleoFamiliar" />
+
+								<p:outputLabel for="moneda" value="Moneda" />
+								<p:selectOneMenu id="moneda"
+									value="#{nucleoFamiliarBean.nuevoNucleoFamiliar.moneda.id}">
+									<f:selectItem itemLabel="Seleccione" itemValue="" />
+									<f:selectItems value="#{nucleoFamiliarBean.monedas}"
+										var="moneda" itemValue="#{moneda.id}"
+										itemLabel="#{moneda.descripcion} (#{moneda.simbolo})" />
+								</p:selectOneMenu>
+								<p:message for="moneda" />
+							</h:panelGrid></td>
+
+					</tr>
+					<tr>
+						<td><p:separator /></td>
+					</tr>
+					<tr>
+						<td align="right">
+							<table>
+								<tbody>
+									<tr>
+										<td><p:commandButton id="crear"
+												actionListener="#{nucleoFamiliarBean.almacenarNucleoFamiliar(usuarioLoginBean.usuario.email)}"
+												value="Aceptar" icon="ui-icon-check" update="grid" /></td>
+										<td><p:commandButton id="volver" action="VOLVER"
+												icon="ui-icon-arrowreturnthick-1-w" value="Volver"
+												immediate="true" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</h:form>
+	</div>
+</body>
+</html>

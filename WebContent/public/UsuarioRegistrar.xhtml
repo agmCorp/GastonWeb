@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet name="reset.css" library="css" />
+	<h:outputStylesheet name="structure.css" library="css" />
+	<style>
+.box.login {
+	height: 660px;
+	width: 450px;
+	margin: -331px 0 0 -225px;
+}
+</style>
+	<h:outputScript name="scripts.js" library="js" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['images/favicon.ico']}" />
+	<title>Registro de Usuario</title>
+</h:head>
+<body>
+	<p:messages id="messages" showDetail="true" autoUpdate="true"
+		closable="true" showSummary="false" escape="false" />
+	<h:form id="form" styleClass="box login">
+		<p:outputPanel id="panel">
+			<fieldset class="boxBody">
+				<table align="center" width="100%">
+					<tbody>
+						<tr>
+							<td align="center"><label><strong>Bienvenido(a)
+										a GasTON Web </strong></label></td>
+						</tr>
+						<tr>
+							<td><p:spacer width="36"
+									rendered="#{not usuarioRegistrarBean.mostrarCaptcha()}" /> <h:panelGrid
+									id="grid" columns="2" cellpadding="5">
+									<p:outputLabel for="email" value="Usuario (email) *" />
+									<p:inputText id="email"
+										value="#{usuarioRegistrarBean.nuevoUsuario.email}" />
+
+									<p:outputLabel for="pwd1" value="Contraseña" />
+									<p:password id="pwd1"
+										value="#{usuarioRegistrarBean.nuevoUsuario.password}"
+										required="true" requiredMessage="Debe ingresar una contraseña"
+										feedback="true" goodLabel="Buena" weakLabel="Débil"
+										strongLabel="Fuerte"
+										promptLabel="Por favor ingrese una contraseña" />
+
+									<p:outputLabel for="pwd2" value="Confirmación" />
+									<p:password id="pwd2" value="#{usuarioRegistrarBean.confPwd}"
+										required="true" feedback="true" goodLabel="Buena"
+										weakLabel="Débil" strongLabel="Fuerte"
+										promptLabel="Por favor ingrese una contraseña"
+										requiredMessage="Debe confirmar su contraseña" />
+
+									<p:outputLabel for="nombre" value="Nombre" />
+									<p:inputText id="nombre"
+										value="#{usuarioRegistrarBean.nuevoUsuario.nombre}" />
+
+									<p:outputLabel for="apellido" value="Apellido" />
+									<p:inputText id="apellido"
+										value="#{usuarioRegistrarBean.nuevoUsuario.apellido}" />
+
+									<p:outputLabel for="telefono" value="Teléfono" />
+									<p:inputMask id="telefono"
+										value="#{usuarioRegistrarBean.nuevoUsuario.telefono}" />
+
+									<p:outputLabel for="pregunta" value="Pregunta" />
+									<h:selectOneMenu id="pregunta"
+										value="#{usuarioRegistrarBean.nuevoUsuario.preguntaSeguridad.id}"
+										styleClass="cjComboBox">
+										<f:selectItem itemLabel="Seleccione" itemValue="" />
+										<f:selectItems value="#{usuarioRegistrarBean.preguntas}"
+											var="preguntaSeguridad" itemValue="#{preguntaSeguridad.id}"
+											itemLabel="#{preguntaSeguridad.pregunta}" />
+									</h:selectOneMenu>
+
+									<p:outputLabel for="respuesta" value="Respuesta" />
+									<p:inputText id="respuesta"
+										value="#{usuarioRegistrarBean.nuevoUsuario.respuestaPreguntaSeguridad}" />
+
+									<p:outputLabel for="rol" value="Rol" />
+									<p:selectManyCheckbox
+										value="#{usuarioRegistrarBean.rolesSeleccionados}" id="rol"
+										required="true" requiredMessage="Debe seleccionar un rol">
+										<f:selectItem itemValue="ADMIN" itemLabel="Administrador" />
+										<f:selectItem itemValue="USUARIO" itemLabel="Usuario estándar" />
+									</p:selectManyCheckbox>
+								</h:panelGrid> <p:spacer width="36"
+									rendered="#{not usuarioRegistrarBean.mostrarCaptcha()}" /></td>
+						</tr>
+						<tr>
+							<td><p:spacer height=" 10" /></td>
+						</tr>
+						<tr>
+							<td align="center"><p:captcha label="Captcha" language="es"
+									required="true" requiredMessage="¿Es Ud. un robot?"
+									rendered="#{usuarioRegistrarBean.mostrarCaptcha()}" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+			<footer>
+			<table align="right">
+				<tbody>
+					<tr>
+						<td><p:commandButton id="aceptar"
+								actionListener="#{usuarioRegistrarBean.registrarUsuario()}"
+								value="Aceptar" styleClass="btnLogin" tabindex="1" update="grid" /></td>
+						<td><p:commandButton action="LOGOUT" value="Volver"
+								styleClass="btnLogin" tabindex="2" immediate="true" /></td>
+					</tr>
+				</tbody>
+			</table>
+			</footer>
+		</p:outputPanel>
+		<p:blockUI block="panel" trigger="aceptar" />
+	</h:form>
+	<ui:insert name="footer">
+		<ui:include src="/resources/common/JSFFooter.xhtml" />
+	</ui:insert>
+</body>
+</html>

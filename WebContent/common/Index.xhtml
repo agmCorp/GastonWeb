@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:event type="preRenderView"
+		listener="#{usuarioLoginBean.determinarSeccion()}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet name="reset.css" library="css" />
+	<h:outputStylesheet name="structure.css" library="css" />
+	<style>
+.box.login {
+	height: 253px;
+	width: 432px;
+	margin: -135px 0 0 -216px;
+}
+</style>
+	<h:outputScript name="scripts.js" library="js" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['images/favicon.ico']}" />
+	<title>Inicio</title>
+</h:head>
+<body onload="breakout()">
+	<h:form styleClass="box login">
+		<fieldset class="boxBody">
+			<center>
+				<table>
+					<tbody>
+						<tr>
+							<td align="center"><label><strong>Bienvenido(a)
+										<h:outputText value="#{usuarioLoginBean.nombreCompleto}" />
+								</strong></label></td>
+						</tr>
+						<tr>
+							<td align="center"><label><br />Su cuenta le
+									permite ingresar tanto a la sección administrativa como
+									operativa de <strong>GasTON Web</strong>.<br /> <br />Por
+									favor seleccione la sección a la que desea ingresar.</label></td>
+						</tr>
+					</tbody>
+				</table>
+			</center>
+		</fieldset>
+		<footer>
+		<table>
+			<tbody>
+				<tr>
+					<td><h:commandButton action="ADMIN"
+							value="Sección administrativa" styleClass="btnLogin" tabindex="1" /></td>
+					<td><h:commandButton action="USUARIO"
+							value="Sección operativa" styleClass="btnLogin" tabindex="2" /></td>
+				</tr>
+			</tbody>
+		</table>
+		</footer>
+	</h:form>
+	<ui:insert name="footer">
+		<ui:include src="/resources/common/JSFFooter.xhtml" />
+	</ui:insert>
+</body>
+</html>

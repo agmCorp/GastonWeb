@@ -1,0 +1,258 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet name="default.css" library="css" />
+	<h:outputStylesheet name="cssLayout.css" library="css" />
+	<style type="text/css">
+.no-border {
+	border-style: hidden !important;
+}
+</style>
+	<h:outputScript name="scripts.js" library="js" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['images/favicon.ico']}" />
+	<title>GasTON web</title>
+</h:head>
+
+<body
+	onload="impedirCargaIndividual('#{request.contextPath}/common/Index.xhtml')">
+	<div id="contenido">
+		<h:form>
+			<p:outputPanel deferred="true">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" showSummary="true" globalOnly="true" />
+				<table align="center">
+					<tbody>
+						<tr>
+							<td align="center"><h1>Reporte de gastos para el núcleo
+									familiar #{reporteBean.nucleoFamiliar.nombre}</h1></td>
+						</tr>
+						<tr>
+							<td align="center"><h:panelGrid id="grid" columns="2"
+									cellpadding="5">
+									<p:outputLabel value="Fecha inicial" />
+									<p:calendar id="startDate"
+										value="#{reporteBean.reporte.fechaIni}"
+										maxdate="#{reporteBean.reporte.fechaFin}" mode="popup"
+										showOn="button" readonlyInput="true" pattern="yyyy-MM-dd">
+										<p:ajax event="dateSelect" update="endDate" />
+									</p:calendar>
+
+									<p:outputLabel value="Fecha final" />
+									<p:calendar id="endDate"
+										value="#{reporteBean.reporte.fechaFin}"
+										mindate="#{reporteBean.reporte.fechaIni}"
+										disabled="#{empty reporteBean.reporte.fechaIni}" mode="popup"
+										showOn="button" readonlyInput="true" pattern="yyyy-MM-dd">
+										<p:ajax event="dateSelect" update="startDate" />
+									</p:calendar>
+								</h:panelGrid></td>
+						</tr>
+						<tr>
+							<td align="center">
+								<table>
+									<tbody>
+										<tr>
+											<td><p:commandButton id="aceptar"
+													actionListener="#{reporteBean.generarReporteDeGastos()}"
+													value="Aceptar" icon="ui-icon-check" update="tbl" /></td>
+											<td><p:commandButton id="volver" action="VOLVER"
+													value="Volver" icon="ui-icon-arrowreturnthick-1-w"
+													immediate="true" /></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p:spacer height="30" />
+				<table align="center">
+					<tbody>
+						<tr>
+							<td><p:dataTable resizableColumns="true" id="tbl"
+									var="reporteLinea" widgetVar="rTable"
+									value="#{reporteBean.reporte.reporteLineas}"
+									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+									paginator="true" rows="8" style="margin-bottom:20px"
+									rowHover="true" emptyMessage="No se ha encontrado información">
+
+									<f:facet name="{Exporters}">
+										<h:commandLink>
+											<p:graphicImage name="images/excel.png" width="24" />
+											<p:dataExporter type="xls" target="tbl"
+												fileName="reporteDeGastos" />
+										</h:commandLink>
+
+										<h:commandLink>
+											<p:graphicImage name="images/pdf.png" width="24" />
+											<p:dataExporter type="pdf" target="tbl"
+												fileName="reporteDeGastos" encoding="windows-1252" />
+										</h:commandLink>
+
+										<h:commandLink>
+											<p:graphicImage name="images/csv.png" width="24" />
+											<p:dataExporter type="csv" target="tbl"
+												fileName="reporteDeGastos" />
+										</h:commandLink>
+
+										<h:commandLink>
+											<p:graphicImage name="images/xml.png" width="24" />
+											<p:dataExporter type="xml" target="tbl"
+												fileName="reporteDeGastos" />
+										</h:commandLink>
+									</f:facet>
+
+									<f:facet name="header">
+            			Expanda las filas para ver la información detallada
+        			</f:facet>
+
+									<p:columnGroup type="header">
+										<p:row>
+											<p:column colspan="1" style="width:16px" />
+											<p:column colspan="3" style="color:red"
+												headerText="Total de Gastos (#{reporteBean.reporte.nucleoFamiliar.moneda.descripcion}) #{reporteBean.reporte.nucleoFamiliar.moneda.simbolo}#{reporteBean.formatBigDecimal(reporteBean.reporte.totalGastos)}" />
+											<p:column colspan="3" style="color:red"
+												headerText="Total de Ingresos (#{reporteBean.reporte.nucleoFamiliar.moneda.descripcion}) #{reporteBean.reporte.nucleoFamiliar.moneda.simbolo}#{reporteBean.formatBigDecimal(reporteBean.reporte.totalIngresos)}" />
+										</p:row>
+										<p:row>
+											<p:column />
+											<p:column headerText="Fecha" />
+											<p:column headerText="Moneda" />
+											<p:column headerText="Monto" />
+											<p:column headerText="Fecha" />
+											<p:column headerText="Moneda" />
+											<p:column headerText="Monto" />
+										</p:row>
+									</p:columnGroup>
+
+									<f:facet style="color:red" name="footer">
+										<h:outputText style="color:red"
+											value="Saldo (#{reporteBean.reporte.nucleoFamiliar.moneda.descripcion}) #{reporteBean.reporte.nucleoFamiliar.moneda.simbolo}#{reporteBean.formatBigDecimal(reporteBean.reporte.saldo)}" />
+									</f:facet>
+
+									<p:column style="width:16px" exportable="false">
+										<p:rowToggler />
+									</p:column>
+
+									<p:column headerText="Fecha del gasto">
+										<h:outputText value="#{reporteLinea.gasto.fecha}" />
+									</p:column>
+									<p:column headerText="Moneda del gasto">
+										<h:outputText
+											value="#{reporteLinea.gasto.moneda.descripcion} (#{reporteLinea.gasto.moneda.simbolo})"
+											rendered="#{not empty reporteLinea.gasto.moneda}" />
+									</p:column>
+									<p:column headerText="Monto del gasto">
+										<h:outputText value="#{reporteLinea.gasto.monto}">
+											<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+												minFractionDigits="2" />
+										</h:outputText>
+									</p:column>
+
+									<p:column headerText="Fecha del ingreso">
+										<h:outputText value="#{reporteLinea.ingreso.fecha}" />
+									</p:column>
+									<p:column headerText="Moneda del ingreso">
+										<h:outputText
+											value="#{reporteLinea.ingreso.moneda.descripcion} (#{reporteLinea.ingreso.moneda.simbolo})"
+											rendered="#{not empty reporteLinea.ingreso.moneda}" />
+									</p:column>
+									<p:column headerText="Monto del ingreso">
+										<h:outputText value="#{reporteLinea.ingreso.monto}">
+											<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+												minFractionDigits="2" />
+										</h:outputText>
+									</p:column>
+
+									<p:rowExpansion>
+										<p:panelGrid columns="2" columnClasses="no-border,no-border">
+											<p:column width="50%">
+												<p:panelGrid columns="2" columnClasses="label,value"
+													rendered="#{not empty reporteLinea.gasto}">
+													<f:facet name="header">
+										Detalle del Gasto
+									</f:facet>
+
+													<p:outputLabel value="Usuario que generó el gasto" />
+													<h:outputText
+														value="#{gastoBean.nombreCompletoResponsable(reporteLinea.gasto.usuario)}" />
+
+													<p:outputLabel value="Contabilizado en el cierre"
+														rendered="#{not empty reporteLinea.gasto.cierre.fecha}" />
+													<h:outputText value="#{reporteLinea.gasto.cierre.fecha}"
+														rendered="#{not empty reporteLinea.gasto.cierre.fecha}" />
+
+													<p:outputLabel value="Fecha" />
+													<h:outputText value="#{reporteLinea.gasto.fecha}" />
+
+													<p:outputLabel value="Moneda" />
+													<h:outputText
+														value="#{reporteLinea.gasto.moneda.descripcion} (#{reporteLinea.gasto.moneda.simbolo})" />
+
+													<p:outputLabel value="Monto" />
+													<h:outputText value="#{reporteLinea.gasto.monto}">
+														<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+															minFractionDigits="2" />
+													</h:outputText>
+
+													<p:outputLabel value="Descripción" />
+													<h:outputText value="#{reporteLinea.gasto.descripcion}" />
+												</p:panelGrid>
+											</p:column>
+
+											<p:column width="50%">
+												<p:panelGrid columns="2" columnClasses="label,value"
+													rendered="#{not empty reporteLinea.ingreso}">
+													<f:facet name="header">
+										Detalle del Ingreso
+									</f:facet>
+
+													<p:outputLabel value="Usuario que generó el ingreso" />
+													<h:outputText
+														value="#{ingresoBean.nombreCompletoResponsable(reporteLinea.ingreso.usuario)}" />
+
+													<p:outputLabel value="Contabilizado en el cierre"
+														rendered="#{not empty reporteLinea.ingreso.cierre.fecha}" />
+													<h:outputText value="#{reporteLinea.ingreso.cierre.fecha}"
+														rendered="#{not empty reporteLinea.ingreso.cierre.fecha}" />
+
+													<p:outputLabel value="Fecha" />
+													<h:outputText value="#{reporteLinea.ingreso.fecha}" />
+
+													<p:outputLabel value="Moneda" />
+													<h:outputText
+														value="#{reporteLinea.ingreso.moneda.descripcion} (#{reporteLinea.ingreso.moneda.simbolo})" />
+
+													<p:outputLabel value="Monto" />
+													<h:outputText value="#{reporteLinea.ingreso.monto}">
+														<f:convertNumber groupingUsed="true" maxFractionDigits="2"
+															minFractionDigits="2" />
+													</h:outputText>
+
+													<p:outputLabel value="Descripción" />
+													<h:outputText value="#{reporteLinea.ingreso.descripcion}" />
+												</p:panelGrid>
+											</p:column>
+										</p:panelGrid>
+									</p:rowExpansion>
+								</p:dataTable></td>
+						</tr>
+						<tr>
+							<td><p:separator /></td>
+						</tr>
+					</tbody>
+				</table>
+			</p:outputPanel>
+		</h:form>
+	</div>
+</body>
+</html>

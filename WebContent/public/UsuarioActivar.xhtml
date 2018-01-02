@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<f:metadata>
+	<f:viewParam name="id" value="#{usuarioRegistrarBean.idActivacionURL}" />
+</f:metadata>
+<h:head>
+	<f:event type="preRenderView"
+		listener="#{usuarioRegistrarBean.activarUsuario()}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet name="reset.css" library="css" />
+	<h:outputStylesheet name="structure.css" library="css" />
+	<style>
+.box.login {
+	height: 202px;
+	width: 450px;
+	margin: -100px 0 0 -225px;
+}
+</style>
+	<h:outputScript name="scripts.js" library="js" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['images/favicon.ico']}" />
+	<title>Activación de Usuario</title>
+</h:head>
+<body>
+	<p:messages id="messages" showDetail="true" autoUpdate="true"
+		closable="true" showSummary="false" />
+	<h:form id="form" styleClass="box login">
+		<p:outputPanel id="panel">
+			<fieldset class="boxBody">
+				<table align="center" width="100%">
+					<tbody>
+						<tr>
+							<td align="center"><label><strong>Bienvenido(a)
+										#{usuarioRegistrarBean.nombreCompleto}</strong></label></td>
+						</tr>
+						<tr>
+							<td><p:spacer height="10" /></td>
+						</tr>
+
+						<tr>
+							<td align="center"><label>Su usuario
+									#{usuarioRegistrarBean.nuevoUsuario.email} ha sido activado.<br />Ya
+									puede ingresar al sistema.
+							</label></td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+			<footer>
+			<table align="right">
+				<tbody>
+					<tr>
+						<td><h:commandButton action="LOGOUT" value="Volver"
+								styleClass="btnLogin" tabindex="2" immediate="true" /></td>
+					</tr>
+				</tbody>
+			</table>
+			</footer>
+		</p:outputPanel>
+	</h:form>
+	<ui:insert name="footer">
+		<ui:include src="/resources/common/JSFFooter.xhtml" />
+	</ui:insert>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet name="default.css" library="css" />
+	<h:outputStylesheet name="cssLayout.css" library="css" />
+	<h:outputScript name="scripts.js" library="js" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['images/favicon.ico']}" />
+	<title>GasTON web</title>
+</h:head>
+
+<body
+	onload="impedirCargaIndividual('#{request.contextPath}/common/Index.xhtml')">
+	<div id="contenido">
+		<h:form>
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" showSummary="true" globalOnly="true" />
+			<table align="center">
+				<tbody>
+					<tr>
+						<td align="center"><h1>Ingreso para el núcleo
+								familiar #{ingresoBean.nucleoFamiliar.nombre}</h1></td>
+					</tr>
+					<tr>
+						<td><h:panelGrid id="grid" columns="3" cellpadding="5">
+								<p:outputLabel for="fecha" value="Fecha" />
+								<p:calendar id="fecha" value="#{ingresoBean.nuevoIngreso.fecha}"
+									mode="popup" showOn="button" readonlyInput="true"
+									pattern="yyyy-MM-dd" />
+								<p:message for="fecha" />
+
+								<p:outputLabel for="moneda" value="Moneda" />
+								<p:selectOneMenu id="moneda"
+									value="#{ingresoBean.nuevoIngreso.moneda.id}">
+									<f:selectItem itemLabel="Seleccione" itemValue="" />
+									<f:selectItems value="#{ingresoBean.monedas}" var="moneda"
+										itemValue="#{moneda.id}"
+										itemLabel="#{moneda.simbolo} - #{moneda.descripcion}" />
+								</p:selectOneMenu>
+								<p:message for="moneda" />
+
+								<p:outputLabel for="monto" value="Monto" />
+								<p:inputNumber id="monto"
+									value="#{ingresoBean.nuevoIngreso.monto}" decimalPlaces="2" />
+								<p:message for="monto" />
+
+								<p:outputLabel for="descripcion" value="Descripcion" />
+								<p:inputText id="descripcion"
+									value="#{ingresoBean.nuevoIngreso.descripcion}" />
+								<p:message for="descripcion" />
+								
+								<p:outputLabel for="observaciones" value="Observaciones" />
+								<p:inputTextarea id="observaciones" rows="6" cols="50" value="#{ingresoBean.nuevoIngreso.observaciones}" />
+								<h:panelGroup />
+
+								<p:outputLabel for="clasificacion" value="Clasificacion" />
+								<p:selectOneMenu id="clasificacion"
+									value="#{ingresoBean.nuevoIngreso.clasificacion.id}">
+									<f:selectItem itemLabel="Seleccione" itemValue="" />
+									<f:selectItems value="#{ingresoBean.clasificacionesIngreso}"
+										var="clasificacionIngreso"
+										itemValue="#{clasificacionIngreso.id}"
+										itemLabel="#{clasificacionIngreso.descripcion}" />
+								</p:selectOneMenu>
+								<p:message for="clasificacion" />
+							</h:panelGrid></td>
+					</tr>
+					<tr>
+						<td><p:separator /></td>
+					</tr>
+					<tr>
+						<td align="right">
+							<table>
+								<tbody>
+									<tr>
+										<td><p:commandButton id="aceptar"
+												actionListener="#{ingresoBean.almacenarIngreso(usuarioLoginBean.usuario.email)}"
+												value="Aceptar" icon="ui-icon-check" update="grid" /></td>
+										<td><p:commandButton id="volver" action="VOLVER"
+												icon="ui-icon-arrowreturnthick-1-w" value="Volver"
+												immediate="true" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</h:form>
+	</div>
+</body>
+</html>

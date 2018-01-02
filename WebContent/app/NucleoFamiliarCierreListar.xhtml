@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<f:event type="preRenderView"
+		listener="#{nucleoFamiliarBean.resetDataTable()}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet name="default.css" library="css" />
+	<h:outputStylesheet name="cssLayout.css" library="css" />
+	<h:outputScript name="scripts.js" library="js" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['images/favicon.ico']}" />
+	<title>GasTON web</title>
+</h:head>
+
+<body
+	onload="impedirCargaIndividual('#{request.contextPath}/common/Index.xhtml')">
+	<div id="contenido">
+		<h:form>
+			<p:outputPanel deferred="true">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" showSummary="true" />
+				<table align="center">
+					<tbody>
+						<tr>
+							<td align="center"><h1>Núcleos familiares administrados
+									por #{usuarioLoginBean.nombreCompleto}</h1></td>
+						</tr>
+						<tr>
+							<td><p:dataTable resizableColumns="true" id="tbl" var="nucleoFamiliar"
+									widgetVar="nfTable"
+									value="#{nucleoFamiliarBean.obtenerNucleosFamiliaresAdministrados(usuarioLoginBean.usuario.email)}"
+									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+									paginator="true" rows="8" style="margin-bottom:20px"
+									rowHover="true"
+									emptyMessage="No se han encontrado núcleos familiares"
+									filteredValue="#{nucleoFamiliarBean.filtroNucleosFamiliares}">
+
+									<f:facet name="{Exporters}">
+										<h:commandLink>
+											<p:graphicImage name="images/excel.png" width="24" />
+											<p:dataExporter type="xls" target="tbl"
+												fileName="nucleosFamiliaresAdministrados" />
+										</h:commandLink>
+
+										<h:commandLink>
+											<p:graphicImage name="images/pdf.png" width="24" />
+											<p:dataExporter type="pdf" target="tbl"
+												fileName="nucleosFamiliaresAdministrados" encoding="windows-1252" />
+										</h:commandLink>
+
+										<h:commandLink>
+											<p:graphicImage name="images/csv.png" width="24" />
+											<p:dataExporter type="csv" target="tbl"
+												fileName="nucleosFamiliaresAdministrados" />
+										</h:commandLink>
+
+										<h:commandLink>
+											<p:graphicImage name="images/xml.png" width="24" />
+											<p:dataExporter type="xml" target="tbl"
+												fileName="nucleosFamiliaresAdministrados" />
+										</h:commandLink>
+									</f:facet>
+
+									<p:column filterBy="#{nucleoFamiliar.nombre}"
+										filterMatchMode="contains">
+										<f:facet name="header">
+											<h:outputText value="Nombre" />
+										</f:facet>
+										<h:outputText value="#{nucleoFamiliar.nombre}" />
+									</p:column>
+
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Moneda" />
+										</f:facet>
+										<h:outputText
+											value="#{nucleoFamiliar.moneda.descripcion} (#{nucleoFamiliar.moneda.simbolo})" />
+									</p:column>
+
+									<p:column
+										filterBy="#{nucleoFamiliarBean.nombreAdministrador(nucleoFamiliar.administrador)}"
+										filterMatchMode="contains">
+										<f:facet name="header">
+											<h:outputText value="Administrador" />
+										</f:facet>
+										<h:outputText
+											value="#{nucleoFamiliarBean.nombreAdministrador(nucleoFamiliar.administrador)}" />
+									</p:column>
+
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Fecha de Creación" />
+										</f:facet>
+										<h:outputText value="#{nucleoFamiliar.fechaCreacion}" />
+									</p:column>
+
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Fecha de último cierre" />
+										</f:facet>
+										<h:outputText value="#{nucleoFamiliar.fechaUltimoCierre}" />
+									</p:column>
+
+									<p:column exportable="false" styleClass="columnButton">
+										<p:growl id="message" showDetail="true" />
+										<p:commandButton value="Contabilizar" update="message tbl"
+											icon="ui-icon-calculator"
+											actionListener="#{nucleoFamiliarBean.contabilizarNucleoFamiliar(nucleoFamiliar)}"
+											disabled="#{nucleoFamiliarBean.deshabilitarContabilizacion(nucleoFamiliar)}">
+
+											<p:confirm header="Confirmación"
+												message="¿Confirma la generación de un cierre para '#{nucleoFamiliar.nombre}'? Esta operación no puede revertirse."
+												icon="ui-icon-alert" />
+											<p:confirmDialog global="true" showEffect="fade"
+												hideEffect="fade" width="600">
+												<p:commandButton value="Si" type="button"
+													styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+												<p:commandButton value="No" type="button"
+													styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+											</p:confirmDialog>
+										</p:commandButton>
+									</p:column>
+
+									<p:column exportable="false" styleClass="columnButton">
+										<p:commandButton value="Ver" icon="ui-icon-search"
+											action="#{cierreBean.visualizarCierres(nucleoFamiliar)}" />
+									</p:column>
+								</p:dataTable></td>
+						</tr>
+						<tr>
+							<td><p:separator /></td>
+						</tr>
+					</tbody>
+				</table>
+			</p:outputPanel>
+		</h:form>
+	</div>
+</body>
+</html>

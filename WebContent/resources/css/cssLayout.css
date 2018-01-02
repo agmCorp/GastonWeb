@@ -1,0 +1,28 @@
+#cabezal {
+	position: relative;
+	padding: 5px;
+	margin: 0px 0px 10px 0px;
+}
+
+#piePagina {
+	font-family: Verdana, "Verdana CE", Arial, "Arial CE",
+		"Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+	font-size: 14px;
+	color: #ffffff; 
+	position: relative;
+	background-color: #58919d;
+	padding: 5px;
+	margin: 10px 0px 0px 0px;
+	height: 50px;
+	align-content: bottom;
+	border-top-left-radius: 2em;
+	border-top-right-radius: 2em;
+	border-bottom-left-radius: 2em;
+	border-bottom-right-radius: 2em;
+}
+
+#contenido {
+	position: relative;
+	padding: 5px;
+	height: 100%;
+}

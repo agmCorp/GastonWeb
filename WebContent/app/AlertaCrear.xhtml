@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet name="default.css" library="css" />
+	<h:outputStylesheet name="cssLayout.css" library="css" />
+	<h:outputScript name="scripts.js" library="js" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['images/favicon.ico']}" />
+	<title>GasTON web</title>
+</h:head>
+
+<body
+	onload="impedirCargaIndividual('#{request.contextPath}/common/Index.xhtml')">
+	<div id="contenido">
+		<h:form>
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" showSummary="true" globalOnly="true" />
+			<table align="center">
+				<tbody>
+					<tr>
+						<td align="center"><h1>Programe su alerta para todos los integrantes del núcleo familiar seleccionado</h1></td>
+					</tr>
+					<tr>
+						<td align="center"><h:panelGrid id="grid" columns="3"
+								cellpadding="5">
+								<p:outputLabel for="fechaHora" value="Fecha y hora" />
+								<p:calendar id="fechaHora"
+									value="#{alertaBean.nuevaAlerta.timestamp}" mode="popup"
+									showOn="button" readonlyInput="true" pattern="yyyy-MM-dd HH:mm" />
+								<p:message for="fechaHora" />
+
+								<p:outputLabel for="descripcion" value="Descripcion" />
+								<p:inputText id="descripcion"
+									value="#{alertaBean.nuevaAlerta.descripcion}" />
+								<p:message for="descripcion" />
+
+								<p:outputLabel for="nucleoFamiliar" value="Núcleo Familiar" />
+								<p:selectOneMenu id="nucleoFamiliar"
+									value="#{alertaBean.nucleoFamiliar.id}">
+									<f:selectItem itemLabel="Seleccione" itemValue="" />
+									<f:selectItems
+										value="#{nucleoFamiliarBean.obtenerNucleosFamiliaresDeIntegrante(usuarioLoginBean.usuario.email)}"
+										var="nucleoFamiliar" itemValue="#{nucleoFamiliar.id}"
+										itemLabel="#{nucleoFamiliar.nombre}" />
+								</p:selectOneMenu>
+								<p:message for="nucleoFamiliar" />
+							</h:panelGrid></td>
+					</tr>
+					<tr>
+						<td align="center"><p:editor id="editor" widgetVar="editorWidget"
+								value="#{alertaBean.nuevaAlerta.mensaje}" width="600" /></td>
+
+					</tr>
+					<tr>
+						<td><p:separator /></td>
+					</tr>
+					<tr>
+						<td align="right">
+							<table>
+								<tbody>
+									<tr>
+										<td><p:commandButton value="Borrar" type="button"
+												onclick="PF('editorWidget').clear();" icon="ui-icon-close" />
+										</td>
+										<td><p:commandButton id="aceptar"
+												actionListener="#{alertaBean.almacenarAlerta()}"
+												value="Aceptar" icon="ui-icon-check" update="grid editor" /></td>
+										<td><p:commandButton id="volver" action="VOLVER"
+												icon="ui-icon-arrowreturnthick-1-w" value="Volver"
+												immediate="true" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</h:form>
+	</div>
+</body>
+</html>

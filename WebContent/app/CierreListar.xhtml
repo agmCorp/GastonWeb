@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<f:event type="preRenderView" listener="#{cierreBean.resetDataTable()}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet name="default.css" library="css" />
+	<h:outputStylesheet name="cssLayout.css" library="css" />
+	<h:outputScript name="scripts.js" library="js" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['images/favicon.ico']}" />
+	<title>GasTON web</title>
+</h:head>
+
+<body
+	onload="impedirCargaIndividual('#{request.contextPath}/common/Index.xhtml')">
+	<div id="contenido">
+		<h:form>
+			<p:outputPanel deferred="true">
+				<table align="center">
+					<tbody>
+						<tr>
+							<td align="center"><h1>Cierres  en moneda #{cierreBean.nucleoFamiliar.moneda.descripcion} (#{cierreBean.nucleoFamiliar.moneda.simbolo}) del núcleo familiar
+									#{cierreBean.nucleoFamiliar.nombre}</h1></td>
+						</tr>
+						<tr>
+							<td><p:dataTable resizableColumns="true" id="tbl" var="cierre" widgetVar="gTable"
+									value="#{cierreBean.cierres}"
+									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+									paginator="true" rows="8" style="margin-bottom:20px"
+									rowHover="true"
+									emptyMessage="No se han encontrado cierres del núcleo familiar #{cierreBean.nucleoFamiliar.nombre}."
+									filteredValue="#{cierreBean.filtroCierres}">
+
+									<f:facet name="{Exporters}">
+										<h:commandLink>
+											<p:graphicImage name="images/excel.png" width="24" />
+											<p:dataExporter type="xls" target="tbl" fileName="cierres" />
+										</h:commandLink>
+
+										<h:commandLink>
+											<p:graphicImage name="images/pdf.png" width="24" />
+											<p:dataExporter type="pdf" target="tbl" fileName="cierres" encoding="windows-1252"/>
+										</h:commandLink>
+
+										<h:commandLink>
+											<p:graphicImage name="images/csv.png" width="24" />
+											<p:dataExporter type="csv" target="tbl" fileName="cierres" />
+										</h:commandLink>
+
+										<h:commandLink>
+											<p:graphicImage name="images/xml.png" width="24" />
+											<p:dataExporter type="xml" target="tbl" fileName="cierres" />
+										</h:commandLink>
+									</f:facet>
+
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Fecha" />
+										</f:facet>
+										<h:outputText value="#{cierre.fecha}" />
+									</p:column>
+
+									<p:column filterBy="#{cierre.totalIngresos}"
+										headerText="Total de ingresos"
+										filterFunction="#{cierreBean.filtrarPorImporte}">
+										<h:outputText
+											value="#{cierre.totalIngresos}">
+											<f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2" />
+										</h:outputText>
+									</p:column>
+
+									<p:column filterBy="#{cierre.totalEgresos}"
+										headerText="Total de egresos"
+										filterFunction="#{cierreBean.filtrarPorImporte}">
+										<h:outputText
+											value="#{cierre.totalEgresos}">
+											<f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2" />
+										</h:outputText>
+									</p:column>
+
+									<p:column filterBy="#{cierre.saldo}" headerText="Saldo"
+										filterFunction="#{cierreBean.filtrarPorImporte}">
+										<h:outputText
+											value="#{cierre.saldo}">
+											<f:convertNumber groupingUsed="true" maxFractionDigits="2" minFractionDigits="2" />
+										</h:outputText>
+									</p:column>
+								</p:dataTable></td>
+						</tr>
+						<tr>
+							<td><p:separator /></td>
+						</tr>
+						<tr>
+							<td align="right">
+								<table>
+									<tbody>
+										<tr>
+											<td><p:commandButton id="volver" action="VOLVER"
+													icon="ui-icon-arrowreturnthick-1-w" value="Volver"
+													immediate="true" /></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</p:outputPanel>
+		</h:form>
+	</div>
+</body>
+</html>
